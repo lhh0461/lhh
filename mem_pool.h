@@ -13,7 +13,6 @@ typedef struct mem_block_s
 
 }mem_block_t;
 
-
 typedef struct mem_node_s
 {
     mem_block_t *block;
@@ -39,6 +38,7 @@ mem_block_t *mem_pool_alloc_block(mem_pool_t *pool, int block_size);
 static int mem_pool_block_add_node(mem_block_t *block, int node_num);
 void *mem_pool_malloc(mem_pool_t *pool, int size);
 void mem_pool_free(mem_pool_t *pool, void *p);
+void dump_mem_pool(mem_pool_t *pool);
 
 
 #define	__MEM_POOL_H__
