@@ -1,0 +1,19 @@
+#此为sed笔记
+#基本用法
+#sed -e ['instruction'] file
+#eg :
+#   sed -e 's/abc/cba' file
+-e 当多个指令需要加
+-f 指定一个script文件
+-p 显示打印
+-n 默认不显示
+
+#awk
+# eg :
+#   awk -F\| '{print $3 "|" $0}' prop.log | sort | awk -F\| '$1 == LastState {print "\t" $5} $1 != LastState { LastState = $4; print $4; print "\t" $5}
+-F 指定分隔符-F,
+-f 指定一个script文件
+$0 记录的所有数据 ($1,$2)
+'' 把指令括起来
+{} 把过程括起来
+// 把正则表达式括起来

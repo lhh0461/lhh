@@ -1,32 +1,26 @@
 #ifndef	__MEM_POOL_H__
 
-#include "list.h"
+#define NOMAL         0
+#define ALLOCATED    -1
+#define ENDOFMEM     -2
 
 typedef struct mem_block_s
 {
-    struct list_head free_list;
-    struct list_head used_list;
-    int size;
     int free_num;
-    int used_num;
-    struct list_head list;
+    int elem_num;
+    int  *used_list;
+    int  *free_list;
+    void *data;
+    mem_block_t *next_block;
 
 }mem_block_t;
 
-typedef struct mem_node_s
-{
-    mem_block_t *block;
-    struct list_head list;
-    char data[0];
-
-}mem_node_t;
-
 typedef struct mem_pool_s
 {
-    struct list_head block_list;
-    int block_num;
-    int alloc_num;
-    //pthread_mutex_t lock;
+    int elem_size;
+    int elem_num;
+    int total_alloc;
+    mem_block_t *block_list;
 
 }mem_pool_t;
 

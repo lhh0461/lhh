@@ -6,7 +6,7 @@
 
 #define BLOCK_NODE_NUM 10
 
-mem_pool_t * mem_pool_create(int block_size)
+mem_pool_t * mem_pool_create(int elem_size, int elem_num)
 {
     mem_pool_t *pool = NULL;
     pool = (mem_pool_t *)malloc(sizeof(mem_pool_t));
@@ -15,13 +15,13 @@ mem_pool_t * mem_pool_create(int block_size)
         return NULL;
     }
     memset(pool, 0, sizeof(mem_pool_t));
-    INIT_LIST_HEAD(&pool->block_list);
-    pool->block_num = 0;
     pool->alloc_num = 0;
+    pool->elem_size = 0;
+    pool->elem_num = 0;
 
-    mem_block_t *blk = mem_pool_alloc_block(pool, block_size);
-    list_add_tail(&blk->list, &pool->block_list);
-
+    mem_block_t *blk = mem_pool_alloc_block(pool, elem_size, elem_num); 
+    pool->block_list = blk;
+    
     fprintf(stdout, "create mem_pool success.\n");
     return pool;
 }
@@ -60,7 +60,7 @@ int mem_pool_destroy(mem_pool_t *pool)
     return 0;
 }
 
-static inline mem_block_t *mem_pool_alloc_block(mem_pool_t *pool, int block_size)
+static inline mem_block_t *mem_pool_alloc_block(mem_pool_t *pool, int elem_size, int elem_num)
 {
     if (pool == NULL) {
         return 0;
@@ -72,19 +72,29 @@ static inline mem_block_t *mem_pool_alloc_block(mem_pool_t *pool, int block_size
         return NULL;
     }
     memset(block, 0, sizeof(mem_block_t));
-    block->size = block_size;
-    block->free_num = 0;
-    block->used_num = 0;
-    INIT_LIST_HEAD(&block->free_list);
-    INIT_LIST_HEAD(&block->used_list);
-    mem_pool_block_add_node(block, BLOCK_NODE_NUM);
 
-    pool->block_num++;
+    block->table = (char *)malloc(elem_num + 1);
+    if (block->table == NULL) {
+        fprintf(stderr, "malloc block->table error!!!!\n");
+        return -1;
+    }
+    memset(block->table, NOMAL, elem_num + 1);
+
+    block->data = (char *)malloc(elem_size * (elem_num + 1));
+    if (block->data == NULL) {
+        fprintf(stderr, "malloc block->data error!!!!\n");
+        return -1;
+    }
+    memset(block->data, '\0', elem_size * (elem_num + 1));
+
+    block->elem_num = elem_num;
+    block->free_num = elem_num;
+    block->next_block = NULL;
 
     return block;
 }
 
-static int mem_pool_block_add_node(mem_block_t *block, int node_num)
+static int __mem_pool_block_add_node(mem_block_t *block, int elem_size, int elem_num)
 {
     mem_node_t *node = NULL;
     int i;
@@ -104,54 +114,42 @@ static int mem_pool_block_add_node(mem_block_t *block, int node_num)
     return 0;
 }
 
-void *mem_pool_malloc(mem_pool_t *pool, int size)
+void *mem_pool_malloc(mem_pool_t *pool)
 {
     mem_block_t *block = NULL, *tmp = NULL;
     struct list_head *pos;
-
-    list_for_each (pos, &pool->block_list) {
-        tmp = list_entry(pos, struct mem_block_s, list); 
-        if (tmp->size >= size) {
-            if (block == NULL || tmp->size < block->size) {
-                block = tmp;
-            }
+    
+    for (tmp = pool->block_list; tmp != NULL; tmp = tmp->next_block) {
+        if (tmp->free_num > 0) {
+            block = tmp; 
+            break;
         }
     }
 
     if (block == NULL) {
-        //TODO：需要考虑对齐
-        block = mem_pool_alloc_block(pool, size);
-        if (block == NULL) return NULL;
-    }
-    
-    if (block->free_num == 0) {
-        mem_pool_block_add_node(block, BLOCK_NODE_NUM);
+        // 创建新块
+        block = mem_pool_alloc_block(pool, pool->elem_size, pool->elem_num);
+        if (block == NULL) {
+            return NULL;
+        }
     }
 
-    mem_node_t *node = NULL;
-    list_for_each (pos, &block->free_list) {
-        node = list_entry(pos, struct mem_node_s, list); 
-        break;
+    int i = 0;
+    for (; i < block->elem_num; ++i) {
+        if (block->table[i] == NOMAL) {
+            break;
+        }
     }
+    assert(i < block->elem_num);
+    block->table[i] = ALLOCATED;
+    block->free_num -= 1;
 
-    list_del(&node->list);
-    list_add_tail(&node->list, &block->used_list);
-    block->free_num--;
-    block->used_num++;
-    pool->alloc_num += size;
-
-    return node->data;
+    return block->data[pool->elem_size * i];
 }
 
 void mem_pool_free(mem_pool_t *pool, void *p)
 {
-    mem_node_t *node = (mem_node_t *)p - 1;
     
-    list_del(&node->list);
-    list_add_tail(&node->list, &node->block->free_list);
-    node->block->free_num--;
-    node->block->used_num++;
-    pool->alloc_num -= node->block->size;
 }
 
 void dump_mem_pool(mem_pool_t *pool)
