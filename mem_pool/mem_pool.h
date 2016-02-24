@@ -1,17 +1,20 @@
 #ifndef	__MEM_POOL_H__
 
-#define NOMAL         0
 #define ALLOCATED    -1
 #define ENDOFMEM     -2
 
+
+//TODO 数组实现链表
 typedef struct mem_block_s
 {
-    int free_num;
-    int elem_num;
-    int  *used_list;
-    int  *free_list;
-    void *data;
-    mem_block_t *next_block;
+    int free_num; //空闲节点数
+    int elem_num; //元素总个数
+    int elem_size;//每个元素大小
+    int head; //链表头
+    int tail; //链表尾 
+    int *table;//空闲链表
+    void *data;//内存池分配的数据
+    mem_block_t *next;
 
 }mem_block_t;
 
@@ -19,7 +22,6 @@ typedef struct mem_pool_s
 {
     int elem_size;
     int elem_num;
-    int total_alloc;
     mem_block_t *block_list;
 
 }mem_pool_t;
