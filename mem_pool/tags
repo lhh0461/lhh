@@ -1,0 +1,95 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ALLOCATED	mem_pool.h	4;"	d
+ENDOFMEM	mem_pool.h	5;"	d
+FOREACH_BLOCK_LIST	mem_pool.c	7;"	d	file:
+INIT_LIST_HEAD	list.h	27;"	d
+LIST_HEAD	list.h	24;"	d
+LIST_HEAD_INIT	list.h	22;"	d
+__LIST_H__	list.h	2;"	d
+__MEM_POOL_H__	mem_pool.h	2;"	d
+__list_add	list.h	/^static __inline__ void __list_add(struct list_head * pnew,$/;"	f	signature:(struct list_head * pnew, struct list_head * prev, struct list_head * next)
+__list_del	list.h	/^static __inline__ void __list_del(struct list_head * prev,$/;"	f	signature:(struct list_head * prev, struct list_head * next)
+__mem_pool_alloc_block	mem_pool.c	/^static inline mem_block_t *__mem_pool_alloc_block(mem_pool_t *pool, int elem_size, int elem_num)$/;"	f	file:	signature:(mem_pool_t *pool, int elem_size, int elem_num)
+__mem_pool_alloc_block	mem_pool.h	/^static inline mem_block_t *__mem_pool_alloc_block(mem_pool_t *pool, int elem_size, int elem_num);$/;"	p	signature:(mem_pool_t *pool, int elem_size, int elem_num)
+a	mem_pool.c	/^    int a;$/;"	m	struct:test	file:	access:public
+a1	mem_pool.c	/^    int a1;$/;"	m	struct:test2	file:	access:public
+a2	mem_pool.c	/^    int a2;$/;"	m	struct:test2	file:	access:public
+a3	mem_pool.c	/^    int a3;$/;"	m	struct:test2	file:	access:public
+b	mem_pool.c	/^    char b;$/;"	m	struct:test	file:	access:public
+b1	mem_pool.c	/^    int b1;$/;"	m	struct:test2	file:	access:public
+b2	mem_pool.c	/^    int b2;$/;"	m	struct:test2	file:	access:public
+b3	mem_pool.c	/^    int b3;$/;"	m	struct:test2	file:	access:public
+c	mem_pool.c	/^    int c;$/;"	m	struct:test	file:	access:public
+c1	mem_pool.c	/^    int c1;$/;"	m	struct:test2	file:	access:public
+container_of	list.h	4;"	d
+data	mem_pool.h	/^    char *data;\/\/内存池分配的数据$/;"	m	struct:mem_block_s	access:public
+dump_mem_pool	mem_pool.c	/^void dump_mem_pool(mem_pool_t *pool)$/;"	f	signature:(mem_pool_t *pool)
+dump_mem_pool	mem_pool.h	/^void dump_mem_pool(mem_pool_t *pool);$/;"	p	signature:(mem_pool_t *pool)
+elem_num	mem_pool.h	/^    int elem_num; \/\/元素总个数$/;"	m	struct:mem_block_s	access:public
+elem_size	mem_pool.h	/^    int elem_size;\/\/每个元素大小$/;"	m	struct:mem_block_s	access:public
+elem_size	mem_pool.h	/^    int elem_size;\/\/每个元素大小$/;"	m	struct:mem_pool_s	access:public
+elem_total	mem_pool.h	/^    int elem_total;\/\/元素总个数$/;"	m	struct:mem_pool_s	access:public
+free_num	mem_pool.h	/^    int free_num; \/\/空闲节点数$/;"	m	struct:mem_block_s	access:public
+head	mem_pool.h	/^    int head; \/\/链表头$/;"	m	struct:mem_block_s	access:public
+head	mem_pool.h	/^    mem_block_t *head;\/\/内存块链表头$/;"	m	struct:mem_pool_s	access:public
+list_add	list.h	/^static __inline__ void list_add(struct list_head *pnew, struct list_head *head)$/;"	f	signature:(struct list_head *pnew, struct list_head *head)
+list_add_tail	list.h	/^static __inline__ void list_add_tail(struct list_head *pnew, struct list_head *head)$/;"	f	signature:(struct list_head *pnew, struct list_head *head)
+list_del	list.h	/^static __inline__ void list_del(struct list_head *entry)$/;"	f	signature:(struct list_head *entry)
+list_del_init	list.h	/^static __inline__ void list_del_init(struct list_head *entry)$/;"	f	signature:(struct list_head *entry)
+list_empty	list.h	/^static __inline__ int list_empty(struct list_head *head)$/;"	f	signature:(struct list_head *head)
+list_entry	list.h	143;"	d
+list_for_each	list.h	151;"	d
+list_for_each_prev	list.h	169;"	d
+list_for_each_safe	list.h	160;"	d
+list_head	list.h	/^struct list_head {$/;"	s
+list_head::next	list.h	/^	struct list_head *next, *prev;$/;"	m	struct:list_head	typeref:struct:list_head::list_head	access:public
+list_head::prev	list.h	/^	struct list_head *next, *prev;$/;"	m	struct:list_head	typeref:struct:list_head::	access:public
+list_splice	list.h	/^static __inline__ void list_splice(struct list_head *list, struct list_head *head)$/;"	f	signature:(struct list_head *list, struct list_head *head)
+main	mem_pool.c	/^int main()$/;"	f
+mem_block_s	mem_pool.h	/^typedef struct mem_block_s$/;"	s
+mem_block_s::data	mem_pool.h	/^    char *data;\/\/内存池分配的数据$/;"	m	struct:mem_block_s	access:public
+mem_block_s::elem_num	mem_pool.h	/^    int elem_num; \/\/元素总个数$/;"	m	struct:mem_block_s	access:public
+mem_block_s::elem_size	mem_pool.h	/^    int elem_size;\/\/每个元素大小$/;"	m	struct:mem_block_s	access:public
+mem_block_s::free_num	mem_pool.h	/^    int free_num; \/\/空闲节点数$/;"	m	struct:mem_block_s	access:public
+mem_block_s::head	mem_pool.h	/^    int head; \/\/链表头$/;"	m	struct:mem_block_s	access:public
+mem_block_s::next	mem_pool.h	/^    struct mem_block_s *next;\/\/内存块链表$/;"	m	struct:mem_block_s	typeref:struct:mem_block_s::mem_block_s	access:public
+mem_block_s::table	mem_pool.h	/^    int *table;\/\/空闲链表$/;"	m	struct:mem_block_s	access:public
+mem_block_s::tail	mem_pool.h	/^    int tail; \/\/链表尾 $/;"	m	struct:mem_block_s	access:public
+mem_block_t	mem_pool.h	/^}mem_block_t;$/;"	t	typeref:struct:mem_block_s
+mem_pool_create	mem_pool.c	/^mem_pool_t * mem_pool_create(int elem_size, int elem_num)$/;"	f	signature:(int elem_size, int elem_num)
+mem_pool_create	mem_pool.h	/^mem_pool_t *mem_pool_create(int elem_size, int elem_num);$/;"	p	signature:(int elem_size, int elem_num)
+mem_pool_destroy	mem_pool.c	/^int mem_pool_destroy(mem_pool_t *pool)$/;"	f	signature:(mem_pool_t *pool)
+mem_pool_destroy	mem_pool.h	/^int mem_pool_destroy(mem_pool_t *pool);$/;"	p	signature:(mem_pool_t *pool)
+mem_pool_free	mem_pool.c	/^void mem_pool_free(mem_pool_t *pool, void *p)$/;"	f	signature:(mem_pool_t *pool, void *p)
+mem_pool_free	mem_pool.h	/^void mem_pool_free(mem_pool_t *pool, void *p);$/;"	p	signature:(mem_pool_t *pool, void *p)
+mem_pool_malloc	mem_pool.c	/^void *mem_pool_malloc(mem_pool_t *pool)$/;"	f	signature:(mem_pool_t *pool)
+mem_pool_malloc	mem_pool.h	/^void *mem_pool_malloc(mem_pool_t *pool);$/;"	p	signature:(mem_pool_t *pool)
+mem_pool_s	mem_pool.h	/^typedef struct mem_pool_s$/;"	s
+mem_pool_s::elem_size	mem_pool.h	/^    int elem_size;\/\/每个元素大小$/;"	m	struct:mem_pool_s	access:public
+mem_pool_s::elem_total	mem_pool.h	/^    int elem_total;\/\/元素总个数$/;"	m	struct:mem_pool_s	access:public
+mem_pool_s::head	mem_pool.h	/^    mem_block_t *head;\/\/内存块链表头$/;"	m	struct:mem_pool_s	access:public
+mem_pool_s::tail	mem_pool.h	/^    mem_block_t *tail;\/\/内存块链表尾$/;"	m	struct:mem_pool_s	access:public
+mem_pool_t	mem_pool.h	/^}mem_pool_t;$/;"	t	typeref:struct:mem_pool_s
+next	list.h	/^	struct list_head *next, *prev;$/;"	m	struct:list_head	typeref:struct:list_head::list_head	access:public
+next	mem_pool.h	/^    struct mem_block_s *next;\/\/内存块链表$/;"	m	struct:mem_block_s	typeref:struct:mem_block_s::mem_block_s	access:public
+prev	list.h	/^	struct list_head *next, *prev;$/;"	m	struct:list_head	typeref:struct:list_head::	access:public
+table	mem_pool.h	/^    int *table;\/\/空闲链表$/;"	m	struct:mem_block_s	access:public
+tail	mem_pool.h	/^    int tail; \/\/链表尾 $/;"	m	struct:mem_block_s	access:public
+tail	mem_pool.h	/^    mem_block_t *tail;\/\/内存块链表尾$/;"	m	struct:mem_pool_s	access:public
+test	mem_pool.c	/^struct test{$/;"	s	file:
+test2	mem_pool.c	/^struct test2{$/;"	s	file:
+test2::a1	mem_pool.c	/^    int a1;$/;"	m	struct:test2	file:	access:public
+test2::a2	mem_pool.c	/^    int a2;$/;"	m	struct:test2	file:	access:public
+test2::a3	mem_pool.c	/^    int a3;$/;"	m	struct:test2	file:	access:public
+test2::b1	mem_pool.c	/^    int b1;$/;"	m	struct:test2	file:	access:public
+test2::b2	mem_pool.c	/^    int b2;$/;"	m	struct:test2	file:	access:public
+test2::b3	mem_pool.c	/^    int b3;$/;"	m	struct:test2	file:	access:public
+test2::c1	mem_pool.c	/^    int c1;$/;"	m	struct:test2	file:	access:public
+test::a	mem_pool.c	/^    int a;$/;"	m	struct:test	file:	access:public
+test::b	mem_pool.c	/^    char b;$/;"	m	struct:test	file:	access:public
+test::c	mem_pool.c	/^    int c;$/;"	m	struct:test	file:	access:public
