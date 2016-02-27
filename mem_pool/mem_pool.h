@@ -8,7 +8,6 @@
 //TODO 数组实现链表
 typedef struct mem_block_s
 {
-    int free_num; //空闲节点数
     int elem_num; //元素总个数
     int elem_size;//每个元素大小
     int head; //链表头
