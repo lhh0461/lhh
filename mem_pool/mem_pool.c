@@ -111,9 +111,10 @@ void *mem_pool_malloc(mem_pool_t *pool)
 {
     mem_block_t *block = NULL, *pos = NULL;
     
+    //找出还没满的内存块
     FOREACH_BLOCK_LIST (pos, pool->head) {
-        if (pos->free_num > 0) {
-            block = pos; 
+        if (pos->head != pos->tail) {
+            block = pos;
             break;
         }
     }
@@ -134,7 +135,6 @@ void *mem_pool_malloc(mem_pool_t *pool)
     int head = block->table[block->head];
     block->table[block->head] = ALLOCATED;
     block->head = head;
-    block->free_num -= 1;
 
     return block->data + offset;
 }
@@ -148,11 +148,10 @@ void mem_pool_free(mem_pool_t *pool, void *p)
     FOREACH_BLOCK_LIST (block, pool->head) {
         offset = (block->data - (char *)p)/block->elem_size;
         // 属于这个块
-        if (offset > 0 && offset < block->elem_num)  {
+        if (offset >= 0 && offset < block->elem_num)  {
             memset(p, '\0', sizeof(block->elem_size)); 
             block->table[block->tail] = offset;
             block->table[offset] = ENDOFMEM; 
-            block->free_num += 1;
             break;
         }
     }
@@ -164,7 +163,6 @@ void dump_mem_pool(mem_pool_t *pool)
 
     printf("pool->elem_size = %d, pool->elem_total = %d\n", pool->elem_size, pool->elem_total);
     FOREACH_BLOCK_LIST (block, pool->head) {
-        printf("block->free_num = %d\n", block->free_num);
         printf("block->elem_num = %d\n", block->elem_num);
         printf("block->elem_size = %d\n", block->elem_size);
         printf("block->head = %d\n", block->head);
