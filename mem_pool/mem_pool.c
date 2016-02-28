@@ -30,42 +30,29 @@ mem_pool_t * mem_pool_create(int elem_size, int elem_num)
 
 int mem_pool_destroy(mem_pool_t *pool)
 {
-//    if (pool == NULL) {
-//        fprintf(stderr, "pool is NULL!!!!\n");
-//        return -1;
-//    }
-//     
-//    mem_block_t *block = NULL;
-//    mem_node_t *node = NULL;
-//    struct list_head *pos, *used_pos, *free_pos;
-//
-//    list_for_each (pos, &pool->block_list) {
-//        block = list_entry(pos, struct mem_block_s, list); 
-//        
-//        list_for_each (used_pos, &block->used_list) {
-//            node = list_entry(used_pos, struct mem_node_s, list); 
-//            list_del(&node->list);
-//            free(node);
-//        }
-//        
-//        list_for_each (free_pos, &block->free_list) {
-//            node = list_entry(free_pos, struct mem_node_s, list); 
-//            list_del(&node->list);
-//            free(node);
-//        }
-//
-//        list_del(&block->list);
-//        free(block);
-//    }
-//    free(pool);
-//    fprintf(stdout, "destory mem_pool success.\n");
+    if (pool == NULL) {
+        fprintf(stderr, "pool is NULL!!!!\n");
+        return -1;
+    }
+    
+    mem_block_t *block = NULL, temp = NULL;
+
+    //释放每个内存块
+    block = pool->head;
+    while (block != NULL) {
+        temp = block->next;
+        __mem_pool_free_block(block);
+        block = temp;
+    }
+    free(pool);
+    fprintf(stdout, "destory mem_pool success.\n");
     return 0;
 }
 
 static inline mem_block_t *__mem_pool_alloc_block(mem_pool_t *pool, int elem_size, int elem_num)
 {
     if (pool == NULL) {
-        return 0;
+        return NULL;
     }
     mem_block_t *block = NULL;
     block = (mem_block_t *)malloc(sizeof(struct mem_block_s));
@@ -95,7 +82,6 @@ static inline mem_block_t *__mem_pool_alloc_block(mem_pool_t *pool, int elem_siz
     memset(block->data, '\0', elem_size * (elem_num + 1));
 
     block->elem_num = elem_num;
-    block->free_num = elem_num;
     block->elem_size = elem_size;
 
     block->head = 0;
@@ -104,6 +90,18 @@ static inline mem_block_t *__mem_pool_alloc_block(mem_pool_t *pool, int elem_siz
     block->next = NULL;
 
     fprintf(stdout, "create mem block success.\n");
+    return block;
+}
+
+static inline void __mem_pool_free_block(mem_block_t *block)
+{
+    if (block == NULL) {
+        return;
+    }
+    free(block->table);
+    free(block->data);
+    free(block);
+    fprintf(stdout, "free mem block success.\n");
     return block;
 }
 
@@ -121,14 +119,13 @@ void *mem_pool_malloc(mem_pool_t *pool)
 
     if (block == NULL) {
         // 创建新块
-        block = __mem_pool_alloc_block(pool, pool->elem_size, pool->elem_num);
+        block = __mem_pool_alloc_block(pool, pool->elem_size, pool->elem_num / 3);
         if (block == NULL) {
             return NULL;
         }
         pool->tail->next = block;
         pool->tail = block;
         pool->elem_total += pool->elem_num;
-        
     }
 
     int offset = block->head * block->elem_size;
