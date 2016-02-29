@@ -35,7 +35,7 @@ int mem_pool_destroy(mem_pool_t *pool)
         return -1;
     }
     
-    mem_block_t *block = NULL, temp = NULL;
+    mem_block_t *block = NULL, *temp = NULL;
 
     //释放每个内存块
     block = pool->head;
@@ -102,7 +102,6 @@ static inline void __mem_pool_free_block(mem_block_t *block)
     free(block->data);
     free(block);
     fprintf(stdout, "free mem block success.\n");
-    return block;
 }
 
 void *mem_pool_malloc(mem_pool_t *pool)
