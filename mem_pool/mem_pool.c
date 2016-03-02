@@ -37,7 +37,7 @@ int mem_pool_destroy(mem_pool_t *pool)
     
     mem_block_t *block = NULL, *temp = NULL;
 
-    //é‡Šæ”¾æ¯ä¸ªå†…å­˜å—
+    //ÊÍ·ÅÃ¿¸öÄÚ´æ¿é
     block = pool->head;
     while (block != NULL) {
         temp = block->next;
@@ -68,7 +68,7 @@ static inline mem_block_t *__mem_pool_alloc_block(mem_pool_t *pool, int elem_siz
         return NULL;
     }
     int i;
-    //åˆå§‹åŒ–æ•°ç»„é“¾è¡¨
+    //³õÊ¼»¯Êı×éÁ´±í
     for (i = 0; i < elem_num; ++i) {
         block->table[i] = i + 1;
     }
@@ -108,7 +108,7 @@ void *mem_pool_malloc(mem_pool_t *pool)
 {
     mem_block_t *block = NULL, *pos = NULL;
     
-    //æ‰¾å‡ºè¿˜æ²¡æ»¡çš„å†…å­˜å—
+    //ÕÒ³ö»¹Ã»ÂúµÄÄÚ´æ¿é
     FOREACH_BLOCK_LIST (pos, pool->head) {
         if (pos->head != pos->tail) {
             block = pos;
@@ -117,7 +117,7 @@ void *mem_pool_malloc(mem_pool_t *pool)
     }
 
     if (block == NULL) {
-        // åˆ›å»ºæ–°å—
+        // ´´½¨ĞÂ¿é
         block = __mem_pool_alloc_block(pool, pool->elem_size, pool->elem_num / 3);
         if (block == NULL) {
             return NULL;
@@ -143,7 +143,7 @@ void mem_pool_free(mem_pool_t *pool, void *p)
    
     FOREACH_BLOCK_LIST (block, pool->head) {
         offset = (block->data - (char *)p)/block->elem_size;
-        // å±äºè¿™ä¸ªå—
+        // ÊôÓÚÕâ¸ö¿é
         if (offset >= 0 && offset < block->elem_num)  {
             memset(p, '\0', sizeof(block->elem_size)); 
             block->table[block->tail] = offset;
