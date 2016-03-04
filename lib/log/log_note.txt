@@ -1,0 +1,5 @@
+1.日志配置/etc/rsyslog.conf
+//超过info的不会打印(debug)
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+
+2.TODO日志定位？ 

@@ -1,0 +1,48 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+NSEC_PER_SEC	thread_pool.c	4;"	d	file:
+QUEUE_IS_FULL	thread_pool.c	6;"	d	file:
+QUEUE_POINT_INC	thread_pool.c	7;"	d	file:
+TASK_QUEUE_SIZE	thread_pool.c	3;"	d	file:
+__THREAD_POOL_H__	thread_pool.h	2;"	d
+arg	thread_pool.h	/^    void *arg;$/;"	m	struct:thread_task_s	access:public
+func	thread_pool.h	/^    worker_func_t func;$/;"	m	struct:thread_task_s	access:public
+g_thread_pool	thread_pool.c	/^static thread_pool_t *g_thread_pool;$/;"	v	file:
+head	thread_pool.h	/^    int head;$/;"	m	struct:task_queue_s	access:public
+init_thread_pool	thread_pool.c	/^int init_thread_pool(int thread_num)$/;"	f	signature:(int thread_num)
+init_thread_pool	thread_pool.h	/^int init_thread_pool(int thread_num);$/;"	p	signature:(int thread_num)
+lock	thread_pool.h	/^    pthread_mutex_t lock;$/;"	m	struct:thread_pool_s	access:public
+notify	thread_pool.h	/^    pthread_cond_t notify;$/;"	m	struct:thread_pool_s	access:public
+queue	thread_pool.h	/^    thread_task_t *queue;$/;"	m	struct:task_queue_s	access:public
+started	thread_pool.h	/^    int started;$/;"	m	struct:thread_pool_s	access:public
+tail	thread_pool.h	/^    int tail;$/;"	m	struct:task_queue_s	access:public
+task_queue	thread_pool.h	/^    task_queue_t *task_queue;$/;"	m	struct:thread_pool_s	access:public
+task_queue_s	thread_pool.h	/^typedef struct task_queue_s$/;"	s
+task_queue_s::head	thread_pool.h	/^    int head;$/;"	m	struct:task_queue_s	access:public
+task_queue_s::queue	thread_pool.h	/^    thread_task_t *queue;$/;"	m	struct:task_queue_s	access:public
+task_queue_s::tail	thread_pool.h	/^    int tail;$/;"	m	struct:task_queue_s	access:public
+task_queue_t	thread_pool.h	/^} task_queue_t;$/;"	t	typeref:struct:task_queue_s
+terminate	thread_pool.h	/^    int terminate;$/;"	m	struct:thread_pool_s	access:public
+thread_ids	thread_pool.h	/^    pthread_t **thread_ids;$/;"	m	struct:thread_pool_s	access:public
+thread_num	thread_pool.h	/^    int thread_num;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_add	thread_pool.c	/^int thread_pool_add(thread_pool_t *thread_pool, worker_func_t func, void *arg)$/;"	f	signature:(thread_pool_t *thread_pool, worker_func_t func, void *arg)
+thread_pool_add	thread_pool.h	/^int thread_pool_add(thread_pool_t *thread_pool, worker_func_t func);$/;"	p	signature:(thread_pool_t *thread_pool, worker_func_t func)
+thread_pool_s	thread_pool.h	/^typedef struct thread_pool_s$/;"	s
+thread_pool_s::lock	thread_pool.h	/^    pthread_mutex_t lock;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_s::notify	thread_pool.h	/^    pthread_cond_t notify;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_s::started	thread_pool.h	/^    int started;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_s::task_queue	thread_pool.h	/^    task_queue_t *task_queue;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_s::terminate	thread_pool.h	/^    int terminate;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_s::thread_ids	thread_pool.h	/^    pthread_t **thread_ids;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_s::thread_num	thread_pool.h	/^    int thread_num;$/;"	m	struct:thread_pool_s	access:public
+thread_pool_t	thread_pool.h	/^} thread_pool_t;$/;"	t	typeref:struct:thread_pool_s
+thread_task_s	thread_pool.h	/^typedef struct thread_task_s$/;"	s
+thread_task_s::arg	thread_pool.h	/^    void *arg;$/;"	m	struct:thread_task_s	access:public
+thread_task_s::func	thread_pool.h	/^    worker_func_t func;$/;"	m	struct:thread_task_s	access:public
+thread_task_t	thread_pool.h	/^} thread_task_t;$/;"	t	typeref:struct:thread_task_s
+worker_func_t	thread_pool.h	/^typedef void *(*worker_func_t)(void *);$/;"	t
+worker_thread_func	thread_pool.c	/^static void *worker_thread_func(void *arg) $/;"	f	file:	signature:(void *arg)
