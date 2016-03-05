@@ -1,0 +1,187 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+FILL_PERCENT	mapping.h	22;"	d
+MAPSIZE	mapping.h	24;"	d
+MAP_HASH_TABLE_SIZE	mapping.h	21;"	d
+MAP_POINTER_HASH	mapping.h	4;"	d
+MAX_TABLE_SIZE	mapping.h	20;"	d
+MNB_SIZE	mapping.h	12;"	d
+_MAPPING_H	mapping.h	2;"	d
+_iterator_op_check	mapping.c	/^inline static int _iterator_op_check(fs_iterator *iter, mapping_t *map)$/;"	f	file:	signature:(fs_iterator *iter, mapping_t *map)
+absorb_mapping	mapping.c	/^void absorb_mapping(mapping_t *m1,mapping_t *m2)$/;"	f	signature:(mapping_t *m1,mapping_t *m2)
+absorb_mapping	mapping.h	/^void absorb_mapping(mapping_t *, mapping_t*);$/;"	p	signature:(mapping_t *, mapping_t*)
+add_mapping	mapping.c	/^mapping_t *add_mapping(mapping_t *m1, mapping_t *m2)$/;"	f	signature:(mapping_t *m1, mapping_t *m2)
+add_mapping	mapping.h	/^mapping_t *add_mapping(mapping_t *, mapping_t*);$/;"	p	signature:(mapping_t *, mapping_t*)
+add_mapping_array	mapping.c	/^void add_mapping_array(mapping_t *m, char *key, array_t *value)$/;"	f	signature:(mapping_t *m, char *key, array_t *value)
+add_mapping_array	mapping.h	/^void add_mapping_array(mapping_t *, char *, array_t*);$/;"	p	signature:(mapping_t *, char *, array_t*)
+add_mapping_malloced_string	mapping.c	/^void add_mapping_malloced_string(mapping_t *m, char *key, char *value)$/;"	f	signature:(mapping_t *m, char *key, char *value)
+add_mapping_malloced_string	mapping.h	/^void add_mapping_malloced_string(mapping_t *, char *, char*);$/;"	p	signature:(mapping_t *, char *, char*)
+add_mapping_object	mapping.c	/^void add_mapping_object(mapping_t *m, char *key, object_t *value)$/;"	f	signature:(mapping_t *m, char *key, object_t *value)
+add_mapping_object	mapping.h	/^void add_mapping_object(mapping_t *, char *, object_t*);$/;"	p	signature:(mapping_t *, char *, object_t*)
+add_mapping_pair	mapping.c	/^void add_mapping_pair(mapping_t *m, char *key, int value)$/;"	f	signature:(mapping_t *m, char *key, int value)
+add_mapping_pair	mapping.h	/^void add_mapping_pair(mapping_t *, char *, int);$/;"	p	signature:(mapping_t *, char *, int)
+add_mapping_shared_string	mapping.c	/^void add_mapping_shared_string(mapping_t *m, char *key, char *value)$/;"	f	signature:(mapping_t *m, char *key, char *value)
+add_mapping_shared_string	mapping.h	/^void add_mapping_shared_string(mapping_t *, char *, char*);$/;"	p	signature:(mapping_t *, char *, char*)
+add_mapping_string	mapping.c	/^void add_mapping_string(mapping_t *m, char *key, char *value)$/;"	f	signature:(mapping_t *m, char *key, char *value)
+add_mapping_string	mapping.h	/^void add_mapping_string(mapping_t *, char *, char*);$/;"	p	signature:(mapping_t *, char *, char*)
+add_to_mapping	mapping.c	/^INLINE_STATIC void add_to_mapping(mapping_t *m1, mapping_t *m2, int free_flag)$/;"	f	signature:(mapping_t *m1, mapping_t *m2, int free_flag)
+allocate_mapping	mapping.c	/^INLINE mapping_t *allocate_mapping(int n)$/;"	f	signature:(int n)
+allocate_mapping	mapping.h	/^INLINE mapping_t *allocate_mapping(int);$/;"	p	signature:(int)
+base	netd.c	/^struct event_base *base;$/;"	v	typeref:struct:event_base
+compose_mapping	mapping.c	/^mapping_t *compose_mapping(mapping_t *m1, mapping_t *m2, unsigned short flag)$/;"	f	signature:(mapping_t *m1, mapping_t *m2, unsigned short flag)
+compose_mapping	mapping.h	/^mapping_t *compose_mapping(mapping_t *, mapping_t *, unsigned short);$/;"	p	signature:(mapping_t *, mapping_t *, unsigned short)
+config_get_int	config.c	/^char *config_get_int(char *key)$/;"	f	signature:(char *key)
+config_get_string	config.c	/^int *config_get_string(char *key)$/;"	f	signature:(char *key)
+config_init	config.c	/^void config_init()$/;"	f
+config_set_int	config.c	/^void config_set_int(const char *key, int value)$/;"	f	signature:(const char *key, int value)
+config_set_string	config.c	/^void config_set_string(const char *key, const char *value)$/;"	f	signature:(const char *key, const char *value)
+copyMapping	mapping.c	/^INLINE mapping_t *copyMapping(mapping_t *m)$/;"	f	signature:(mapping_t *m)
+copyMapping	mapping.h	/^INLINE mapping_t *copyMapping(mapping_t *m);$/;"	p	signature:(mapping_t *m)
+count	mapping.c	/^		int count;$/;"	m	struct:unique_node_s	file:	access:public
+count	mapping.h	/^    int count; \/* total # of nodes actually in mapping *\/$/;"	m	struct:mapping_s	access:public
+dealloc_mapping	mapping.c	/^INLINE void dealloc_mapping(mapping_t *m)$/;"	f	signature:(mapping_t *m)
+dealloc_mapping	mapping.h	/^void dealloc_mapping(mapping_t*);$/;"	p	signature:(mapping_t*)
+dirty_mng	mapping.h	/^    struct dirty_manage_s *dirty_mng; \/\/ 脏数据管理$/;"	m	struct:mapping_s	typeref:struct:mapping_s::dirty_manage_s	access:public
+extra	mapping.h	/^    svalue_t *extra;$/;"	m	struct:finfo_s	access:public
+extra_ref	mapping.h	/^    int extra_ref;$/;"	m	struct:mapping_s	access:public
+f_unique_mapping	mapping.c	/^	void f_unique_mapping(void)$/;"	f	signature:(void)
+filter_mapping	mapping.c	/^	void filter_mapping(svalue_t *arg, int num_arg)$/;"	f	signature:(svalue_t *arg, int num_arg)
+filter_mapping	mapping.h	/^void filter_mapping(svalue_t *, int);$/;"	p	signature:(svalue_t *, int)
+find_for_insert	mapping.c	/^INLINE svalue_t *find_for_insert(mapping_t *m, svalue_t *lv, int doTheFree)$/;"	f	signature:(mapping_t *m, svalue_t *lv, int doTheFree)
+find_for_insert	mapping.h	/^INLINE svalue_t *find_for_insert(mapping_t *, svalue_t *, int);$/;"	p	signature:(mapping_t *, svalue_t *, int)
+find_in_mapping	mapping.c	/^svalue_t *find_in_mapping(mapping_t *m, svalue_t *lv)$/;"	f	signature:(mapping_t *m, svalue_t *lv)
+find_in_mapping	mapping.h	/^svalue_t *find_in_mapping(mapping_t *, svalue_t*);$/;"	p	signature:(mapping_t *, svalue_t*)
+find_string_in_mapping	mapping.c	/^svalue_t *find_string_in_mapping(mapping_t *m, char *p)$/;"	f	signature:(mapping_t *m, char *p)
+find_string_in_mapping	mapping.h	/^svalue_t *find_string_in_mapping(mapping_t *, char*);$/;"	p	signature:(mapping_t *, char*)
+finfo_s	mapping.h	/^typedef struct finfo_s$/;"	s
+finfo_s::extra	mapping.h	/^    svalue_t *extra;$/;"	m	struct:finfo_s	access:public
+finfo_s::fp	mapping.h	/^    funptr_t *fp;$/;"	m	struct:finfo_s	access:public
+finfo_s::func	mapping.h	/^    char *func;$/;"	m	struct:finfo_s	access:public
+finfo_s::obj	mapping.h	/^    object_t *obj;$/;"	m	struct:finfo_s	access:public
+finfo_t	mapping.h	/^} finfo_t;$/;"	t	typeref:struct:finfo_s
+fp	mapping.h	/^    funptr_t *fp;$/;"	m	struct:finfo_s	access:public
+free_mapping	mapping.c	/^INLINE void free_mapping(mapping_t *m)$/;"	f	signature:(mapping_t *m)
+free_mapping	mapping.h	/^INLINE void free_mapping(mapping_t*);$/;"	p	signature:(mapping_t*)
+free_node	mapping.c	/^void free_node(mapping_node_t *mn)$/;"	f	signature:(mapping_node_t *mn)
+free_node	mapping.h	/^void free_node(mapping_node_t*);$/;"	p	signature:(mapping_node_t*)
+free_nodes	mapping.c	/^static mapping_node_t *free_nodes = 0;$/;"	v	file:
+func	mapping.h	/^    char *func;$/;"	m	struct:finfo_s	access:public
+g_u_m_list	mapping.c	/^	static unique_m_list_t *g_u_m_list = 0;$/;"	v	file:
+growMap	mapping.c	/^INLINE int growMap(mapping_t *m)$/;"	f	signature:(mapping_t *m)
+indices	mapping.c	/^		int *indices;$/;"	m	struct:unique_node_s	file:	access:public
+insert_in_mapping	mapping.c	/^static svalue_t *insert_in_mapping(mapping_t *m, char *key)$/;"	f	file:	signature:(mapping_t *m, char *key)
+key	mapping.c	/^		svalue_t key;$/;"	m	struct:unique_node_s	file:	access:public
+load_mapping_from_aggregate	mapping.c	/^mapping_t *load_mapping_from_aggregate(svalue_t *sp, int n)$/;"	f	signature:(svalue_t *sp, int n)
+load_mapping_from_aggregate	mapping.h	/^mapping_t *load_mapping_from_aggregate(svalue_t *, int);$/;"	p	signature:(svalue_t *, int)
+main	server_main.c	/^int main(int argc, char **argv)$/;"	f	signature:(int argc, char **argv)
+map	mapping.h	/^    mapping_t *map,  *newmap;$/;"	m	struct:minfo_s	access:public
+mapTraverse	mapping.c	/^mapping_t *mapTraverse(mapping_t *m, int (*func)(mapping_t *, mapping_node_t *, void*), void* extra)$/;"	f	signature:(mapping_t *m, int (*func)(mapping_t *, mapping_node_t *, void*), void* extra)
+mapTraverse	mapping.h	/^mapping_t *mapTraverse(mapping_t *, int(*) (mapping_t *, mapping_node_t *, void*), void*);$/;"	p	signature:(mapping_t *, int(*) (mapping_t *, mapping_node_t *, void*), void*)
+map_insert_int_key	mapping.c	/^svalue_t *map_insert_int_key(mapping_t *m, int key)$/;"	f	signature:(mapping_t *m, int key)
+map_insert_int_key	mapping.h	/^svalue_t *map_insert_int_key(mapping_t *m, int key);$/;"	p	signature:(mapping_t *m, int key)
+map_insert_str_key	mapping.c	/^svalue_t *map_insert_str_key(mapping_t *m, char *key)$/;"	f	signature:(mapping_t *m, char *key)
+map_insert_str_key	mapping.h	/^svalue_t *map_insert_str_key(mapping_t *m, char *key);$/;"	p	signature:(mapping_t *m, char *key)
+map_mapping	mapping.c	/^void map_mapping(svalue_t *arg, int num_arg)$/;"	f	signature:(svalue_t *arg, int num_arg)
+map_mapping	mapping.h	/^void map_mapping(svalue_t *, int);$/;"	p	signature:(svalue_t *, int)
+mapping_delete	mapping.c	/^void mapping_delete(mapping_t *m, svalue_t *lv)$/;"	f	signature:(mapping_t *m, svalue_t *lv)
+mapping_delete	mapping.h	/^void mapping_delete(mapping_t *, svalue_t*);$/;"	p	signature:(mapping_t *, svalue_t*)
+mapping_each	mapping.h	/^array_t *mapping_each(mapping_t*);$/;"	p	signature:(mapping_t*)
+mapping_indices	mapping.c	/^array_t *mapping_indices(mapping_t *m)$/;"	f	signature:(mapping_t *m)
+mapping_indices	mapping.h	/^array_t *mapping_indices(mapping_t*);$/;"	p	signature:(mapping_t*)
+mapping_iter_erase	mapping.c	/^fs_iterator *mapping_iter_erase(fs_iterator *iter, mapping_t *map)$/;"	f	signature:(fs_iterator *iter, mapping_t *map)
+mapping_iter_head	mapping.c	/^void *mapping_iter_head(fs_iterator *iter, mapping_t *map)$/;"	f	signature:(fs_iterator *iter, mapping_t *map)
+mapping_iter_info	mapping.c	/^void *mapping_iter_info(fs_iterator *iter, mapping_t *map)$/;"	f	signature:(fs_iterator *iter, mapping_t *map)
+mapping_iter_next	mapping.c	/^void *mapping_iter_next(fs_iterator *iter, mapping_t *map)$/;"	f	signature:(fs_iterator *iter, mapping_t *map)
+mapping_iter_set	mapping.c	/^void mapping_iter_set(mapping_t *map)$/;"	f	signature:(mapping_t *map)
+mapping_iter_set	mapping.h	/^void mapping_iter_set(mapping_t *map);$/;"	p	signature:(mapping_t *map)
+mapping_node_block_s	mapping.h	/^typedef struct mapping_node_block_s$/;"	s
+mapping_node_block_s::next	mapping.h	/^    struct mapping_node_block_s *next;$/;"	m	struct:mapping_node_block_s	typeref:struct:mapping_node_block_s::mapping_node_block_s	access:public
+mapping_node_block_s::nodes	mapping.h	/^    mapping_node_t nodes[MNB_SIZE];$/;"	m	struct:mapping_node_block_s	access:public
+mapping_node_block_t	mapping.h	/^} mapping_node_block_t;$/;"	t	typeref:struct:mapping_node_block_s
+mapping_node_blocks	mapping.c	/^mapping_node_block_t *mapping_node_blocks = 0;$/;"	v
+mapping_node_s	mapping.h	/^typedef struct mapping_node_s$/;"	s
+mapping_node_s::next	mapping.h	/^    struct mapping_node_s *next;$/;"	m	struct:mapping_node_s	typeref:struct:mapping_node_s::mapping_node_s	access:public
+mapping_node_s::values	mapping.h	/^    svalue_t values[2];$/;"	m	struct:mapping_node_s	access:public
+mapping_node_t	mapping.h	/^} mapping_node_t;$/;"	t	typeref:struct:mapping_node_s
+mapping_s	mapping.h	/^typedef struct mapping_s$/;"	s
+mapping_s::count	mapping.h	/^    int count; \/* total # of nodes actually in mapping *\/$/;"	m	struct:mapping_s	access:public
+mapping_s::dirty_mng	mapping.h	/^    struct dirty_manage_s *dirty_mng; \/\/ 脏数据管理$/;"	m	struct:mapping_s	typeref:struct:mapping_s::dirty_manage_s	access:public
+mapping_s::extra_ref	mapping.h	/^    int extra_ref;$/;"	m	struct:mapping_s	access:public
+mapping_s::ref	mapping.h	/^    unsigned short ref; \/* how many times this map has been$/;"	m	struct:mapping_s	access:public
+mapping_s::table	mapping.h	/^    mapping_node_t **table; \/* the hash table *\/$/;"	m	struct:mapping_s	access:public
+mapping_s::table_size	mapping.h	/^    unsigned short table_size; \/* # of buckets in hash table == power of 2 *\/$/;"	m	struct:mapping_s	access:public
+mapping_s::unfilled	mapping.h	/^    unsigned short unfilled; \/* # of buckets among 80% of total buckets that do not have entries *\/$/;"	m	struct:mapping_s	access:public
+mapping_save_size	mapping.h	/^int mapping_save_size(mapping_t*);$/;"	p	signature:(mapping_t*)
+mapping_t	mapping.h	/^} mapping_t;$/;"	t	typeref:struct:mapping_s
+mapping_too_large	mapping.h	70;"	d
+mapping_values	mapping.c	/^array_t *mapping_values(mapping_t *m)$/;"	f	signature:(mapping_t *m)
+mapping_values	mapping.h	/^array_t *mapping_values(mapping_t*);$/;"	p	signature:(mapping_t*)
+mark_mapping_node_blocks	mapping.c	/^	void mark_mapping_node_blocks()$/;"	f
+mark_mapping_node_blocks	mapping.h	/^void mark_mapping_node_blocks(void);$/;"	p	signature:(void)
+mask	mapping.c	/^		unsigned short mask;$/;"	m	struct:unique_m_list_s	file:	access:public
+max	mapping.h	74;"	d
+minfo_s	mapping.h	/^typedef struct minfo_s$/;"	s
+minfo_s::map	mapping.h	/^    mapping_t *map,  *newmap;$/;"	m	struct:minfo_s	access:public
+minfo_s::newmap	mapping.h	/^    mapping_t *map,  *newmap;$/;"	m	struct:minfo_s	access:public
+minfo_t	mapping.h	/^} minfo_t;$/;"	t	typeref:struct:minfo_s
+msameval	mapping.c	/^int msameval(svalue_t *arg1, svalue_t *arg2)$/;"	f	signature:(svalue_t *arg1, svalue_t *arg2)
+msameval	mapping.h	/^int msameval(svalue_t *, svalue_t*);$/;"	p	signature:(svalue_t *, svalue_t*)
+net_connect	network.c	/^int net_connect(const char *ip, unsigned short port, int block)$/;"	f	signature:(const char *ip, unsigned short port, int block)
+net_convert_addr	network.c	/^int net_convert_addr(const char*ip, unsigned short port, struct sockaddr_in *addr)$/;"	f	signature:(const char*ip, unsigned short port, struct sockaddr_in *addr)
+net_listen	network.c	/^int net_listen(const char *ip, unsigned short port, int backlog, int block)$/;"	f	signature:(const char *ip, unsigned short port, int backlog, int block)
+net_set_block	network.c	/^int net_set_block(int fd, int *rflag)$/;"	f	signature:(int fd, int *rflag)
+net_set_nonblock	network.c	/^int net_set_nonblock(int fd)$/;"	f	signature:(int fd)
+netd_init	netd.c	/^void netd_init(void)$/;"	f	signature:(void)
+netd_start	netd.c	/^void netd_start(void)$/;"	f	signature:(void)
+new_map_node	mapping.c	/^mapping_node_t *new_map_node()$/;"	f
+new_map_node	mapping.h	/^mapping_node_t *new_map_node(void);$/;"	p	signature:(void)
+newmap	mapping.h	/^    mapping_t *map,  *newmap;$/;"	m	struct:minfo_s	access:public
+next	mapping.c	/^		struct unique_m_list_s *next;$/;"	m	struct:unique_m_list_s	typeref:struct:unique_m_list_s::unique_m_list_s	file:	access:public
+next	mapping.c	/^		struct unique_node_s *next;$/;"	m	struct:unique_node_s	typeref:struct:unique_node_s::unique_node_s	file:	access:public
+next	mapping.h	/^    struct mapping_node_block_s *next;$/;"	m	struct:mapping_node_block_s	typeref:struct:mapping_node_block_s::mapping_node_block_s	access:public
+next	mapping.h	/^    struct mapping_node_s *next;$/;"	m	struct:mapping_node_s	typeref:struct:mapping_node_s::mapping_node_s	access:public
+node_find_in_mapping	mapping.c	/^INLINE mapping_node_t *node_find_in_mapping(mapping_t *m, svalue_t *lv)$/;"	f	signature:(mapping_t *m, svalue_t *lv)
+node_hash	mapping.c	/^INLINE_STATIC int node_hash(mapping_node_t *mn)$/;"	f	signature:(mapping_node_t *mn)
+nodes	mapping.h	/^    mapping_node_t nodes[MNB_SIZE];$/;"	m	struct:mapping_node_block_s	access:public
+num_mappings	mapping.c	/^int num_mappings = 0;$/;"	v
+obj	mapping.h	/^    object_t *obj;$/;"	m	struct:finfo_s	access:public
+pos	mapping.h	/^    int pos, size, w;$/;"	m	struct:vinfo_s	access:public
+ref	mapping.h	/^    unsigned short ref; \/* how many times this map has been$/;"	m	struct:mapping_s	access:public
+restore_hash_string	mapping.c	/^int restore_hash_string(char **val, svalue_t *sv)$/;"	f	signature:(char **val, svalue_t *sv)
+save_mapping	mapping.h	/^char *save_mapping(mapping_t*);$/;"	p	signature:(mapping_t*)
+size	mapping.h	/^    int pos, size, w;$/;"	m	struct:vinfo_s	access:public
+socket_init	netd.c	/^void socket_init(void)$/;"	f	signature:(void)
+string_print_formatted	mapping.c	/^char *string_print_formatted(char *format_str, int argc, svalue_t *argv) ; $/;"	p	file:	signature:(char *format_str, int argc, svalue_t *argv)
+svalue_to_int	mapping.c	/^INLINE int svalue_to_int(svalue_t *v)$/;"	f	signature:(svalue_t *v)
+table	mapping.h	/^    mapping_node_t **table; \/* the hash table *\/$/;"	m	struct:mapping_s	access:public
+table_size	mapping.h	/^    unsigned short table_size; \/* # of buckets in hash table == power of 2 *\/$/;"	m	struct:mapping_s	access:public
+total_mapping_nodes	mapping.c	/^int total_mapping_nodes = 0;$/;"	v
+total_mapping_size	mapping.c	/^int total_mapping_size = 0;$/;"	v
+unfilled	mapping.h	/^    unsigned short unfilled; \/* # of buckets among 80% of total buckets that do not have entries *\/$/;"	m	struct:mapping_s	access:public
+unique_add_to_mapping	mapping.c	/^INLINE_STATIC void unique_add_to_mapping(mapping_t *m1, mapping_t *m2, int free_flag)$/;"	f	signature:(mapping_t *m1, mapping_t *m2, int free_flag)
+unique_m_list_s	mapping.c	/^	typedef struct unique_m_list_s$/;"	s	file:
+unique_m_list_s::mask	mapping.c	/^		unsigned short mask;$/;"	m	struct:unique_m_list_s	file:	access:public
+unique_m_list_s::next	mapping.c	/^		struct unique_m_list_s *next;$/;"	m	struct:unique_m_list_s	typeref:struct:unique_m_list_s::unique_m_list_s	file:	access:public
+unique_m_list_s::utable	mapping.c	/^		unique_node_t **utable;$/;"	m	struct:unique_m_list_s	file:	access:public
+unique_m_list_t	mapping.c	/^	} unique_m_list_t;$/;"	t	typeref:struct:unique_m_list_s	file:
+unique_mapping_error_handler	mapping.c	/^	void unique_mapping_error_handler(void)$/;"	f	signature:(void)
+unique_node_s	mapping.c	/^	typedef struct unique_node_s$/;"	s	file:
+unique_node_s::count	mapping.c	/^		int count;$/;"	m	struct:unique_node_s	file:	access:public
+unique_node_s::indices	mapping.c	/^		int *indices;$/;"	m	struct:unique_node_s	file:	access:public
+unique_node_s::key	mapping.c	/^		svalue_t key;$/;"	m	struct:unique_node_s	file:	access:public
+unique_node_s::next	mapping.c	/^		struct unique_node_s *next;$/;"	m	struct:unique_node_s	typeref:struct:unique_node_s::unique_node_s	file:	access:public
+unique_node_t	mapping.c	/^	} unique_node_t;$/;"	t	typeref:struct:unique_node_s	file:
+utable	mapping.c	/^		unique_node_t **utable;$/;"	m	struct:unique_m_list_s	file:	access:public
+v	mapping.h	/^    array_t *v;$/;"	m	struct:vinfo_s	access:public
+values	mapping.h	/^    svalue_t values[2];$/;"	m	struct:mapping_node_s	access:public
+vinfo_s	mapping.h	/^typedef struct vinfo_s$/;"	s
+vinfo_s::pos	mapping.h	/^    int pos, size, w;$/;"	m	struct:vinfo_s	access:public
+vinfo_s::size	mapping.h	/^    int pos, size, w;$/;"	m	struct:vinfo_s	access:public
+vinfo_s::v	mapping.h	/^    array_t *v;$/;"	m	struct:vinfo_s	access:public
+vinfo_s::w	mapping.h	/^    int pos, size, w;$/;"	m	struct:vinfo_s	access:public
+vinfo_t	mapping.h	/^} vinfo_t;$/;"	t	typeref:struct:vinfo_s
+w	mapping.h	/^    int pos, size, w;$/;"	m	struct:vinfo_s	access:public

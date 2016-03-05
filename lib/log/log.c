@@ -1,5 +1,7 @@
 /*
  * 实现日志封装
+ * TODO：可以改为直接根据模块名写文件
+ *       不使用系统的接口
  */
 #include <stdio.h>
 #include <stdarg.h>
