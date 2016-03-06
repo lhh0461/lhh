@@ -3,32 +3,17 @@
 #include <assert.h>
 #include <stdlib.h>
 
+#include "config.h"
+
 static lua_State* L;  
 
-char *config_file;
-
-
-void config_set_int(const char *key, int value);
-void config_set_string(const char *key, const char *value);
-
-static const char * load_config = "\
-    local config_name = ...\
-    local f = assert(io.open(config_name))\
-    local code = assert(f:read \'*a\')\
-    local function getenv(name) return assert(os.getenv(name), \'os.getenv() failed: \' .. name) end\
-    code = string.gsub(code, \'%$([%w_%d]+)\', getenv)\
-    f:close()\
-    local result = {}\
-    assert(load(code,\'=(load)\',\'t\',result))()\
-    return result\
-    ";
-
-
+static const char *config_file = "./config.ini";
+static const char *load_file = "./load_config.lua";
 
 static void __init_config(void) 
 {
     lua_pushnil(L);  /* first key */
-    while (lua_next(L, -1) != 0) {
+    while (lua_next(L, -2) != 0) {
         int keyt = lua_type(L, -2);
         if (keyt != LUA_TSTRING) {
             fprintf(stderr, "Invalid config table\n");
@@ -62,17 +47,20 @@ void config_init()
     L = luaL_newstate();  
     //打开库  
     luaL_openlibs(L);  
-    //if (luaL_loadfile(L,"./load_config.lua"))
-    if (luaL_loadstring(L,load_config))
+    luaS_initshr();
+    if (luaL_loadfile(L, load_file))
     {  
-        printf("error\n");  
+        printf("loadstring error\n");  
+        lua_close(L);
+        exit(1);
     }  
     //push进lua函数  
-    lua_pushstring(L, "./config.ini");   
-    int res = lua_pcall(L,1,1,0); 
+    lua_pushstring(L, config_file);   
+    int res = lua_pcall(L, 1, 1, 0); 
     if (res != LUA_OK) {
-        printf("lua_pcall error\n");  
+        fprintf(stderr, "lua_pcall error, errno = %d\n", res);  
         lua_close(L);
+        exit(1);
     }
     __init_config();
 }
@@ -120,6 +108,12 @@ int main()
 {
     config_init();
     int a = config_get_int("MAX_ONLINE");
+    const char* b = config_get_string("IP");
+    int c = config_get_int("PORT");
+    int d = config_get_int("HARBORID");
     printf("get a = %d\n", a);
+    printf("get b = %s\n", b);
+    printf("get c = %d\n", c);
+    printf("get d = %d\n", d);
     return 0;
 }

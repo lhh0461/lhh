@@ -54,7 +54,7 @@ end
 --file:close()
 
 local config_name = ...
-local file = io.open(config_name)
+local file = assert(io.open(config_name))
 local code = assert(file:read '*a')
 local function getenv(name) 
     return assert(os.getenv(name), 'os.getenv() failed: ' .. name) 
@@ -64,8 +64,7 @@ file:close()
 local result = {}
 print(code)
 assert(load(code,'=(load)','t',result))()
-
-for k,v in pairs(config) do
-    print(k,v)
-end
+--for k,v in pairs(result) do
+--    print(k,v)
+--end
 return result
