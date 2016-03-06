@@ -8,7 +8,7 @@
 static lua_State* L;  
 
 static const char *config_file = "./config.ini";
-static const char *load_file = "./load_config.lua";
+static const char *load_config = "./load_config.lua";
 
 static void __init_config(void) 
 {
@@ -48,7 +48,7 @@ void config_init()
     //打开库  
     luaL_openlibs(L);  
     luaS_initshr();
-    if (luaL_loadfile(L, load_file))
+    if (luaL_loadfile(L, load_config))
     {  
         printf("loadstring error\n");  
         lua_close(L);

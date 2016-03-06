@@ -109,7 +109,7 @@ int net_connect(const char *ip, unsigned short port, int block)
 int net_listen(const char *ip, unsigned short port, int backlog, int block)
 {
 	struct sockaddr_in addr;
-	int fd;
+	evutil_socket_t fd;
 	printf("listen on %s:%d\n", ip, port);
 	if (1 == net_convert_addr(ip, port, &addr)) {
 		fd = socket(PF_INET, SOCK_STREAM, 0);
@@ -118,7 +118,7 @@ int net_listen(const char *ip, unsigned short port, int backlog, int block)
 			return -1;
 		}
 		int reuse = 1;
-		if (0 > setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(int))) {
+		if (0 > evutil_make_listen_socket_reuseable(fd)) {
 			perror("fs net setsockopt");
 			close(fd);
 			return -1;
@@ -134,7 +134,7 @@ int net_listen(const char *ip, unsigned short port, int backlog, int block)
 			return -1;
 		}
 		if (!block) {
-			if (0 > net_set_nonblock(fd)){
+			if (0 > evutil_make_socket_nonblocking(fd)(fd)){
 				perror("fs net fcntl noblock");
 				close(fd);
 				return -1;
