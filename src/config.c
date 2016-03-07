@@ -104,16 +104,3 @@ void config_set_string(const char *key, const char *value)
 }
 
 
-int main()
-{
-    config_init();
-    int a = config_get_int("MAX_ONLINE");
-    const char* b = config_get_string("IP");
-    int c = config_get_int("PORT");
-    int d = config_get_int("HARBORID");
-    printf("get a = %d\n", a);
-    printf("get b = %s\n", b);
-    printf("get c = %d\n", c);
-    printf("get d = %d\n", d);
-    return 0;
-}

@@ -1,6 +1,9 @@
 #include <unistd.h>
 #include <stdio.h>
 
+extern void gated_init(void);
+extern void gated_start(void);
+
 int main(int argc, char **argv)
 {
 
@@ -16,16 +19,16 @@ int main(int argc, char **argv)
         printf("optind: %d\n", optind);
         switch(ch) {
             case 'n':
-                module_init = netd_init;
-                startup = netd_start;
+                module_init = gated_init;
+                startup = gated_start;
                 break; 
-            case 'l':
-                module_init = gamed_init;
-                startup = gamed_start;
-                break; 
-            case 'f':
-                config_file = optarg;
-                break; 
+          //  case 'l':
+          //      module_init = gamed_init;
+          //      startup = gamed_start;
+          //      break; 
+          //  case 'f':
+          //      config_file = optarg;
+          //      break; 
         }
     }
 

@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <errno.h>
 
+#include <event2/util.h>
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -17,7 +18,7 @@
 //TODO:发送数据
 //
 //
-
+#include "log.h"
 
 int net_convert_addr(const char*ip, unsigned short port, struct sockaddr_in *addr)
 {
@@ -41,7 +42,7 @@ int net_set_block(int fd, int *rflag)
 {
 	int flag = fcntl(fd, F_GETFL, 0);
     if (flag < 0){
-        log_perror("fcntl");
+        log_error("fcntl");
         return -1;
     }
 	if (rflag != NULL) {
@@ -49,7 +50,7 @@ int net_set_block(int fd, int *rflag)
 	}
 	flag = fcntl(fd, F_SETFL, flag & (~O_NONBLOCK));
     if (flag < 0){
-        log_perror("fcntl");
+        log_error("fcntl");
         return -1;
     }
     return 0;
@@ -59,12 +60,12 @@ int net_set_nonblock(int fd)
 {
     int flag = fcntl(fd, F_GETFL, 0);
     if (flag < 0){
-        log_perror("fcntl");
+        log_error("fcntl");
         return -1;
     }
     flag = fcntl(fd, F_SETFL, flag | O_NONBLOCK);
     if (flag < 0){
-        log_perror("fcntl");
+        log_error("fcntl");
         return -1;
     }
 
@@ -134,7 +135,7 @@ int net_listen(const char *ip, unsigned short port, int backlog, int block)
 			return -1;
 		}
 		if (!block) {
-			if (0 > evutil_make_socket_nonblocking(fd)(fd)){
+			if (0 > evutil_make_socket_nonblocking(fd)){
 				perror("fs net fcntl noblock");
 				close(fd);
 				return -1;
