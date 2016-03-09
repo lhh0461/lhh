@@ -13,18 +13,15 @@
 #include "config.h"
 #include "log.h"
 
-static struct event_base *g_base;
+extern struct event_base *g_base;
 
-static int backlog = 5000;
-
-void libevent_init(void)
+static void libevent_init(void)
 {
 	g_base = event_base_new();
 	if (!g_base) {
 		fprintf(stderr, "Could not initialize libevent!\n");
 		exit(1);
 	}
-    
 }
 
 void client_read_cb(struct bufferevent *bev, void *arg)
@@ -34,13 +31,6 @@ void client_read_cb(struct bufferevent *bev, void *arg)
 
     evbuffer_add_buffer(gamed_output, gamed_input);
     fprintf(stdout, "client read cb!!!\n");
-}
-
-void client_write_cb(struct bufferevent *bev, void *arg)
-{
-    fprintf(stdout, "client write cb!!!\n");
-
-
 }
 
 void client_error_cb(struct bufferevent *bev, short what, void *arg)
@@ -64,7 +54,7 @@ static void client_accept_cb(struct evconnlistener *client_listener,
     struct event_base *base = evconnlistener_get_base(client_listener);
     struct bufferevent *bev = bufferevent_socket_new(
             base, fd, BEV_OPT_CLOSE_ON_FREE);
-    bufferevent_setcb(bev, client_read_cb, client_write_cb, client_error_cb, NULL);
+    bufferevent_setcb(bev, client_read_cb, NULL, client_error_cb, NULL);
     bufferevent_enable(bev, EV_READ|EV_WRITE);
 }
 
@@ -80,25 +70,25 @@ static void client_accept_error_cb(struct evconnlistener *gamed_listener, void *
 
 void open_client_service(struct event_base *base)
 {
-    //const char *ip config_get_string("OUTER_NETD_IP");
     int port = config_get_int("OUTER_GATED_PORT");
 	struct sockaddr_in sin;
 	memset(&sin, 0, sizeof(sin));
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(port);
-    //evutil_socket_t listener_fd = net_listen(ip, port, backlog, 0);
-	struct evconnlistener *client_listener = evconnlistener_new_bind(base, client_accept_cb, (void *)base,
+
+    struct evconnlistener *client_listener = evconnlistener_new_bind(base, client_accept_cb, (void *)base,
 	    LEV_OPT_REUSEABLE|LEV_OPT_CLOSE_ON_FREE, -1,
 	    (struct sockaddr*)&sin,
 	    sizeof(sin));
+
     if (!client_listener) {
+        int err = EVUTIL_SOCKET_ERROR();
+        fprintf(stderr, "Got an error [%d][%s] on the evconnlistener_new_bind. "
+                "Shutting down.\n", err, evutil_socket_error_to_string(err));
         fprintf(stderr, "client listener create error!!!\n");
         exit(1);
     }
     evconnlistener_set_error_cb(client_listener, client_accept_error_cb);
-    //struct event *client_accept_event = event_new(base, listener_fd, EV_READ|EV_PERSIST, do_client_accept, (void*)base);
-    //event_add(client_accept_event, NULL);
-
 }
 
 void gamed_read_cb(struct bufferevent *bev, void *arg)
@@ -107,16 +97,13 @@ void gamed_read_cb(struct bufferevent *bev, void *arg)
     struct evbuffer *gamed_input = bufferevent_get_input(bev);
     struct evbuffer *gamed_output = bufferevent_get_output(bev);
 
+    //char buff[1024] = {'\0'};
+    //evbuffer_remove(gamed_input, buff, sizeof(buff));
+    //fprintf(stdout, "gated get data : [%s]!!!\n", buff);
     evbuffer_add_buffer(gamed_output, gamed_input);
-    fprintf(stdout, "gamed read cb!!!\n");
+    //fprintf(stdout, "gamed read cb!!!\n");
     /* Ok, we can provide service for client ! */ 
     open_client_service(base);
-}
-
-void gamed_write_cb(struct bufferevent *bev, void *arg)
-{
-    fprintf(stdout, "gamed write cb!!!\n");
-
 }
 
 void gamed_error_cb(struct bufferevent *bev, short what, void *arg)
@@ -138,9 +125,8 @@ static void gamed_accept_cb(struct evconnlistener *gamed_listener,
     struct event_base *base = evconnlistener_get_base(gamed_listener);
     struct bufferevent *bev = bufferevent_socket_new(
             base, fd, BEV_OPT_CLOSE_ON_FREE);
-    bufferevent_setcb(bev, gamed_read_cb, gamed_write_cb, gamed_error_cb, NULL);
+    bufferevent_setcb(bev, gamed_read_cb, NULL, gamed_error_cb, NULL);
     bufferevent_enable(bev, EV_READ|EV_WRITE);
-    
 }
 
 static void gamed_accept_error_cb(struct evconnlistener *gamed_listener, void *arg)
@@ -153,15 +139,10 @@ static void gamed_accept_error_cb(struct evconnlistener *gamed_listener, void *a
     event_base_loopexit(base, NULL);
 }
 
-void socket_init(void)
+static void socket_init(void)
 {
-    //TODO：先连gamed，再对外提供服务
-    //const char *gamed_ip config_get_string("GAMED_IP");
+    //先连gamed，再对外提供服务
     int port = config_get_int("INTER_GATED_PORT");
-   // evutil_socket_t gamed_fd = net_listen(ip, port, backlog, 0);
-   // struct event *game_accept_event = event_new(base, gamed_fd, EV_READ|EV_PERSIST, do_accept, (void*)base);
-   // event_add(game_accept_event, NULL);
-	
 	struct sockaddr_in sin;
 	memset(&sin, 0, sizeof(sin));
 	sin.sin_family = AF_INET;
@@ -177,6 +158,10 @@ void socket_init(void)
     evconnlistener_set_error_cb(gamed_listener, gamed_accept_error_cb);
 }
 
+static void signal_init()
+{
+    
+}
 
 void gated_init(void)
 {
@@ -184,7 +169,7 @@ void gated_init(void)
     config_init();
     log_init("gated", 0);
     socket_init();
-    //signal_init();
+    signal_init();
 
 }
 

@@ -8,7 +8,7 @@
 static lua_State* L;  
 
 static const char *config_file = "./config.ini";
-static const char *load_config = "./load_config.lua";
+static const char *load_config = "./src/load_config.lua";
 
 static void __init_config(void) 
 {
@@ -63,6 +63,7 @@ void config_init()
         exit(1);
     }
     __init_config();
+    printf("init config finish!!!\n");
 }
 
 const char *config_get_string(const char *key)

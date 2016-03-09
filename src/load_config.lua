@@ -62,7 +62,6 @@ end
 code = string.gsub(code, '%$([%w_%d]+)', getenv)
 file:close()
 local result = {}
-print(code)
 assert(load(code,'=(load)','t',result))()
 --for k,v in pairs(result) do
 --    print(k,v)
