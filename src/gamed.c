@@ -13,6 +13,7 @@
 #include "config.h"
 #include "log.h"
 #include "network.h"
+#include "protocal.h"
 
 extern struct event_base *g_base;
 
@@ -61,8 +62,12 @@ static void socket_init(void)
         exit(1);
     }
     g_gated_conn =  net_new_connection(gated_fd, gated_read_cb, NULL, gated_error_cb);
-    const char *buf = "i am gamed";
-    net_send_packet(g_gated_conn, (void *)buf, strlen(buf));
+    auth_packet_t authpack;
+    authpack.cmd = AUTH_GAMED;
+    authpack.len = sizeof(authpack);
+    fprintf(stdout, "authpack.len = %d!!\n", authpack.len);
+    int ret = net_send_packet(g_gated_conn, (void *)&authpack, sizeof(authpack));
+    fprintf(stdout, "ret = %d!!\n", ret);
 
 }
 

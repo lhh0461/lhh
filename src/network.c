@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 
 #include "network.h"
+#include "protocal.h"
 
 extern struct event_base *g_base;
 
@@ -157,6 +158,7 @@ net_connection_t *net_new_connection(int fd, bufferevent_data_cb conn_read_cb,
         return NULL;
     }
     conn->fd = fd;
+    conn->auth = AUTH_NONE;
     conn->udata = NULL;
     conn->bev = bufferevent_socket_new(g_base, fd, BEV_OPT_CLOSE_ON_FREE); 
     if (!conn->bev) {
@@ -172,7 +174,7 @@ net_connection_t *net_new_connection(int fd, bufferevent_data_cb conn_read_cb,
 //向某个连接发送数据
 int net_send_packet(net_connection_t *conn, void *data, int datalen)
 {
-    int ret = bufferevent_write(conn->bev, data, strlen(data)); 
+    int ret = bufferevent_write(conn->bev, data, datalen); 
     if (ret != 0) {
         fprintf(stderr, "net send packet error.bufsize=%lu,errno=%d\n",
                 evbuffer_get_length(bufferevent_get_output(conn->bev)), errno);
