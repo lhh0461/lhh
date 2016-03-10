@@ -18,6 +18,8 @@ Plugin 'grep.vim'
 Plugin 'dyng/ctrlsf.vim' "need ag or ack
 Plugin 'scrooloose/nerdcommenter' "批量注释
 Plugin 'SirVer/ultisnips' "自动填充代码块
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rking/ag.vim'
 
