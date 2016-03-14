@@ -38,6 +38,7 @@ void gated_read_cb(struct bufferevent *bev, void *arg)
         printf("gamed get data: %s\n", buff);
         memset(buff, '\0', sizeof(buff));
     }
+    //gamed_rpc_dispatch();
 }
 
 void gated_error_cb(struct bufferevent *bev, short what, void *arg)
@@ -71,13 +72,13 @@ static void socket_init(void)
 
 }
 
-
 void gamed_init(void)
 {
     libevent_init();
     config_init();
     log_init("gated", 0);
     socket_init();
+    vm_init();
     //signal_init();
 
 }

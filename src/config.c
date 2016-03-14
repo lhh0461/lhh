@@ -1,5 +1,5 @@
-#include <lua.h> 
-#include <lauxlib.h>  
+#include <lua.h>
+#include <lauxlib.h>
 #include <assert.h>
 #include <stdlib.h>
 
@@ -49,8 +49,8 @@ void config_init()
     luaL_openlibs(L);  
     luaS_initshr();
     if (luaL_loadfile(L, load_config))
-    {  
-        printf("loadstring error\n");  
+    { 
+        printf("loadstring error\n"); 
         lua_close(L);
         exit(1);
     }  

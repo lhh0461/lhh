@@ -52,13 +52,8 @@ static void client_accept_cb(struct evconnlistener *client_listener,
     void *arg) 
 {
     fprintf(stdout, "client accept!!!\n");
-    /* We got a new connection! Set up a bufferevent for it. */
-    struct event_base *base = evconnlistener_get_base(client_listener);
-    struct bufferevent *bev = bufferevent_socket_new(
-            base, fd, BEV_OPT_CLOSE_ON_FREE);
-    /* TODO:Create client connection struct. */
-    bufferevent_setcb(bev, client_read_cb, NULL, client_error_cb, NULL);
-    bufferevent_enable(bev, EV_READ|EV_WRITE);
+    /* We got a new client connection! Create a connection struct for it. */
+    g_gamed_conn =  net_new_connection(fd, client_read_cb, NULL, client_error_cb);
 }
 
 static void client_accept_error_cb(struct evconnlistener *gamed_listener, void *arg)
