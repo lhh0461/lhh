@@ -1,7 +1,10 @@
 #include <lua.h>
-#include <lauxlib.h>
+#include <lualib.h>
+#include <lstring.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <lauxlib.h>
 
 #include "config.h"
 
@@ -10,7 +13,7 @@ static lua_State* L;
 static const char *config_file = "./config.ini";
 static const char *load_config = "./src/load_config.lua";
 
-static void __init_config(void) 
+void __init_config(void) 
 {
     lua_pushnil(L);  /* first key */
     while (lua_next(L, -2) != 0) {

@@ -5,7 +5,8 @@ LDFLAGS = -L./3rd/lua -L/usr/lib
 LDLIBS = -llua -lm -ldl -L/usr/lib -levent_core
 BUILD_PATH ?= .
 
-SRC = main.c gated.c gamed.c config.c network.c log.c
+SRC = main.c gated.c gamed.c config.c network.c log.c \
+	vm.c
 
 all : \
 	$(BUILD_PATH)/main

@@ -11,6 +11,7 @@
 #include <arpa/inet.h>
 
 #include "config.h"
+#include "vm.h"
 #include "log.h"
 #include "network.h"
 #include "protocal.h"
